@@ -18,8 +18,15 @@ public class BillingService {
 
     // Усунуто Stamp Coupling: передаються лише необхідні дані (city та weightKg) замість усього CustomerProfile
     public static double calculateDeliveryCost(String city, double weightKg) {
-        double baseRate = "Kyiv".equals(city) ? 80.0 : 110.0;
-        return baseRate + (weightKg * 12.0);
+double baseRate;
+        if ("Ivano-Frankivsk".equals(city)) {
+            baseRate = 50.0;
+        } else if ("Kyiv".equals(city)) {
+            baseRate = 80.0;
+        } else {
+            baseRate = 110.0;
+        }
+        return baseRate + (weightKg * 15.0);
     }
 
     // Усунуто Common та Control Coupling: явний параметр taxRate і окремий метод для стандартного рахунку
